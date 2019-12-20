@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
+        </Console>
+
+        <RollingFile name="RAFT-FILE" filename="/var/log/foo/raft.log"
+                     filepattern="var/log/foo/raft.%d{YYYY-MM-dd}.%i.log">
+            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
+        <RollingFile name="RollingFile" filename="/var/log/foo/foo-springboot.log"
+                     filepattern="var/log/foo/foo-springboot.%d{YYYY-MM-dd}.%i.log">
+            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <logger name="org.springframework.web" level="INFO" />
+        <logger name="org.apache" level="WARN" />
+        <logger name="com.alipay.sofa" level="INFO" additivity="false">
+            <AppenderRef ref="RAFT-FILE"/>
+        </logger>
+        <logger name="com.alipay.remoting" level="INFO" additivity="false">
+            <AppenderRef ref="RAFT-FILE"/>
+        </logger>
+        <Root level="INFO">
+            <!--&lt;!&ndash;<AppenderRef ref="Console"/>&ndash;&gt;-->
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
