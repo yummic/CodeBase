@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
 
 import java.util.Date;
 
@@ -15,6 +16,10 @@ import java.util.Date;
 public class FooBootApplication implements ApplicationListener<ApplicationReadyEvent> {
 
 	public static int port = 8080;
+
+	DigestAuthenticationFilter aaa;
+
+
 
 	@Autowired
 	private ThreadPoolTaskScheduler threadPoolTaskScheduler;
@@ -48,6 +53,6 @@ public class FooBootApplication implements ApplicationListener<ApplicationReadyE
 
 		threadPoolTaskScheduler.schedule(() -> {
 			System.out.println("trigger task." + new Date());
-		}, new CronTrigger("0/30 * * * * 1/5 *"));
+		}, new CronTrigger("0/30 * * * 1/5 *"));
 	}
 }
