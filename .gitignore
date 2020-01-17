@@ -2,3 +2,4 @@
 /java/Foo-with-springboot/target
 /java/Foo-with-springboot/.idea
 java/Foo-with-springboot/Foo-with-springboot.iml
+/java/Foo-with-springboot/jsch_poolable/target
