@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 @Component
 public class StorageServiceImpl implements StorageService {
 
-    String rootPath = "D:/tmp/mvcupload/";
+    String rootPath = "/tmp/mvcupload/";
 
     @Override
     public void init() throws IOException {
