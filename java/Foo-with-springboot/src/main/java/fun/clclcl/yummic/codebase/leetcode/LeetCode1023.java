@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeetCode1023 {
-
+    // edit with ipad
     public List<Boolean> camelMatch(String[] queries, String pattern) {
 
         List<Boolean> result = new ArrayList<>();
